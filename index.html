@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <title>Hii</title>
+</head>
+<body> 
+<script>
+var arr = new Array (1,2,3,4,5);
+var brr = new Array (1,2,3,4,5);
+var crr = new Array (1,2,3,4,5);
+
+varhowMany = numTheSame(arr,brr)
+
+document.write(howMany);
+function numTheSame(a,b) {
+    var count = 0;
+    for(var i = 0; i<a.length;i++) {
+        if(a[i] == b[i]) {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+
+</script>
+</body>
