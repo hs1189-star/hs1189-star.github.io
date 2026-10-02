@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmen | Rutgers University Student Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rutgers: {
+                            DEFAULT: '#CC0033', // Official Rutgers Scarlet Red
+                            dark: '#990026',
+                            light: '#FF3366',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 flex flex-col min-h-screen">
+
+    <nav class="sticky top-0 z-40 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Branding Badge -->
+                <div class="flex items-center space-x-3">
+                    <span class="bg-rutgers text-white font-extrabold px-3 py-1 rounded-lg text-lg tracking-wider shadow-sm">
+                        R
+                    </span>
+                    <div>
+                        <span class="font-bold text-xl tracking-tight block leading-none">HARMEN</span>
+                        <span class="text-xs text-rutgers font-semibold tracking-widest uppercase">Rutgers University</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#about" class="hover:text-rutgers font-medium transition-colors">About</a>
+                    <a href="#skills" class="hover:text-rutgers font-medium transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-rutgers font-medium transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-rutgers font-medium transition-colors">Contact</a>
+                    
+                    <!-- Deployment Modal Trigger -->
+                    <button onclick="openModal()" class="text-xs bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 flex items-center space-x-1.5 transition">
+                        <i class="fa-brands fa-github text-sm"></i>
+                        <span>GitHub Pages Guide</span>
+                    </button>
+
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:text-rutgers transition">
+                        <i id="theme-toggle-dark-icon" class="hidden fas fa-moon text-lg"></i>
+                        <i id="theme-toggle-light-icon" class="hidden fas fa-sun text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden items-center space-x-2">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                        <i id="theme-toggle-dark-icon-mobile" class="hidden fas fa-moon"></i>
+                        <i id="theme-toggle-light-icon-mobile" class="hidden fas fa-sun"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 pt-2 pb-4 space-y-2">
+            <a href="#about" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-rutgers font-medium">About</a>
+            <a href="#skills" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-rutgers font-medium">Skills</a>
+            <a href="#projects" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-rutgers font-medium">Projects</a>
+            <a href="#contact" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-rutgers font-medium">Contact</a>
+            <button onclick="openModal()" class="w-full text-left py-2 text-rutgers font-semibold flex items-center space-x-2">
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub Pages Deployment Guide</span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="about" class="py-20 bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="space-y-6 max-w-2xl">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rutgers/10 text-rutgers text-sm font-semibold border border-rutgers/20">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Rutgers University Student</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
+                    Hi, I'm <span class="text-rutgers">Harmen</span>
+                </h1>
+                
+                <!-- Explicit Rubric Personal Statement -->
+                <p class="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed font-medium italic border-l-4 border-rutgers pl-4 py-1 bg-rutgers/5 dark:bg-rutgers/10 rounded-r-lg">
+                    "I am a Rutgers student with over four years of management and operations experience, I bridge the gap between technical financial analysis and real-world leadership to drive business efficiency."
+                </p>
+
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+                    <a href="#contact" class="px-6 py-3 bg-rutgers hover:bg-rutgers-dark text-white font-semibold rounded-xl shadow-lg shadow-rutgers/20 transition transform hover:-translate-y-0.5">
+                        Get In Touch
+                    </a>
+                    <a href="#projects" class="px-6 py-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100 font-semibold rounded-xl border border-gray-300 dark:border-gray-700 shadow-sm transition">
+                        View Projects
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Visual Badge -->
+            <div class="relative flex-shrink-0">
+                <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl bg-gradient-to-tr from-rutgers to-red-400 p-1 shadow-2xl">
+                    <div class="w-full h-full bg-white dark:bg-gray-900 rounded-[22px] flex flex-col items-center justify-center text-center p-6 space-y-3">
+                        <div class="w-16 h-16 rounded-full bg-rutgers/10 text-rutgers flex items-center justify-center text-3xl font-bold">
+                            H
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900 dark:text-white">Rutgers Scarlet Knight</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Finance & Operations</p>
+                        </div>
+                        <div class="flex space-x-2 text-rutgers text-xs font-semibold bg-rutgers/5 px-3 py-1 rounded-full border border-rutgers/10">
+                            <i class="fas fa-check-circle mt-0.5"></i>
+                            <span>4+ Yrs Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Skills & Competencies</h2>
+                <p class="mt-3 text-gray-600 dark:text-gray-400">Highlighting technical financial tools alongside managerial leadership capabilities.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill 1 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/60 hover:border-rutgers transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rutgers/10 text-rutgers flex items-center justify-center text-xl mb-4 group-hover:bg-rutgers group-hover:text-white transition">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Financial Analysis & Reporting</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Evaluating financial metrics, synthesizing balance sheets, and generating operational insights for executive decisions.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/60 hover:border-rutgers transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rutgers/10 text-rutgers flex items-center justify-center text-xl mb-4 group-hover:bg-rutgers group-hover:text-white transition">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Cash Management & Budgeting</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Managing cash flows, tracking expenditure variances, and formulating accurate departmental budgets.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/60 hover:border-rutgers transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rutgers/10 text-rutgers flex items-center justify-center text-xl mb-4 group-hover:bg-rutgers group-hover:text-white transition">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Microsoft Excel, Word, PowerPoint</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Advanced spreadsheet modeling with VLOOKUP/PivotTables, formal business documentation, and investor presentations.</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/60 hover:border-rutgers transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rutgers/10 text-rutgers flex items-center justify-center text-xl mb-4 group-hover:bg-rutgers group-hover:text-white transition">
+                        <i class="fas fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Data Analysis & Attention to Detail</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Auditing complex operational datasets to identify anomalies, eliminate inefficiencies, and preserve data integrity.</p>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/60 hover:border-rutgers transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rutgers/10 text-rutgers flex items-center justify-center text-xl mb-4 group-hover:bg-rutgers group-hover:text-white transition">
+                        <i class="fas fa-users-gear"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Leadership & Team Supervision</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Over 4 years of direct supervisory experience managing team workflows, scheduling, onboarding, and goal realization.</p>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200/80 dark:border-gray-700/60 hover:border-rutgers transition group">
+                    <div class="w-12 h-12 rounded-xl bg-rutgers/10 text-rutgers flex items-center justify-center text-xl mb-4 group-hover:bg-rutgers group-hover:text-white transition">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Communication & Customer Relations</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Cultivating client satisfaction, facilitating team alignment, and delivering clear cross-departmental presentations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800/40 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">Projects Showcase</h2>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">Add your own academic, financial, or operational projects dynamically below!</p>
+                </div>
+                
+                <button onclick="toggleProjectForm()" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-rutgers hover:bg-rutgers-dark text-white font-semibold rounded-xl shadow transition">
+                    <i class="fas fa-plus"></i>
+                    <span>Add Project</span>
+                </button>
+            </div>
+
+            <!-- Dynamic Project Form Container (Hidden by Default) -->
+            <div id="project-form-container" class="hidden mb-12 p-6 sm:p-8 rounded-2xl bg-white dark:bg-gray-900 border-2 border-rutgers/30 shadow-xl">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                        <i class="fas fa-folder-plus text-rutgers"></i> Add Your Project
+                    </h3>
+                    <button onclick="toggleProjectForm()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+
+                <form id="project-form" onsubmit="handleAddProject(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">Project Title *</label>
+                            <input type="text" id="proj-title" required placeholder="e.g. Budget Forecasting Model" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-rutgers outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">Category / Tag</label>
+                            <input type="text" id="proj-category" placeholder="e.g. Financial Analysis" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-rutgers outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">Description *</label>
+                        <textarea id="proj-desc" rows="3" required placeholder="Summarize the project goals, tools utilized, and overall results achieved..." class="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-rutgers outline-none"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">Skills Used (comma-separated)</label>
+                            <input type="text" id="proj-skills" placeholder="Excel, Budgeting, Cash Flow" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-rutgers outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-1">Project Link / URL (optional)</label>
+                            <input type="url" id="proj-link" placeholder="https://..." class="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-rutgers outline-none">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end space-x-3 pt-2">
+                        <button type="button" onclick="toggleProjectForm()" class="px-5 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Cancel</button>
+                        <button type="submit" class="px-5 py-2.5 rounded-lg bg-rutgers hover:bg-rutgers-dark text-white font-semibold shadow">Add to Page</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Project Grid Container -->
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Initial Empty State -->
+                <div id="empty-projects-state" class="col-span-full py-16 px-6 text-center rounded-2xl border-2 border-dashed border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-900/50">
+                    <div class="w-16 h-16 rounded-full bg-rutgers/10 text-rutgers flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">No Projects Added Yet</h3>
+                    <p class="text-gray-600 dark:text-gray-400 max-w-md mx-auto text-sm mb-6">
+                        Click the "Add Project" button above to dynamically display your projects here, or use the commented HTML template in the code to edit manually!
+                    </p>
+                    <button onclick="toggleProjectForm()" class="inline-flex items-center space-x-2 px-5 py-2 bg-rutgers text-white font-medium rounded-lg hover:bg-rutgers-dark transition text-sm">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Your First Project</span>
+                    </button>
+                </div>
+
+                <!-- 
+                ========================================================================
+                MANUAL HTML PROJECT TEMPLATE FOR HARMEN
+                ========================================================================
+                To manually add a project card permanently in your HTML file, copy and paste 
+                the code block below directly inside <div id="project-grid">:
+
+                <div class="p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-semibold text-rutgers mb-2">
+                            <span>Financial Analysis</span>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Operational Budget Model</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                            Developed an integrated cash flow forecasting and expense allocation model for an operational unit using Microsoft Excel.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium">Excel</span>
+                            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium">Budgeting</span>
+                        </div>
+                        <a href="https://github.com" target="_blank" class="inline-flex items-center text-xs font-semibold text-rutgers hover:underline gap-1">
+                            <span>View Project</span>
+                            <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+                ========================================================================
+                -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-4">Get In Touch</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-lg mx-auto mb-10">
+                Interested in discussing management operations, financial analysis, or potential career opportunities? Reach out anytime!
+            </p>
+
+            <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 shadow-sm max-w-xl mx-auto w-full">
+                <div class="flex items-center space-x-3 text-gray-900 dark:text-white font-medium text-sm sm:text-base px-2">
+                    <i class="fas fa-envelope text-rutgers text-lg"></i>
+                    <span>hs1189@scarletmail.rutgers.edu</span>
+                </div>
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <!-- Mailto Link using Scarletmail -->
+                    <a href="mailto:hs1189@scarletmail.rutgers.edu" class="flex-1 sm:flex-none px-4 py-2 bg-rutgers hover:bg-rutgers-dark text-white rounded-xl text-sm font-semibold transition">
+                        Send Email
+                    </a>
+                    <!-- Copy Email to Clipboard Button -->
+                    <button onclick="copyToClipboard('hs1189@scarletmail.rutgers.edu')" class="flex-1 sm:flex-none px-4 py-2 bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-xl text-sm font-semibold transition flex items-center justify-center space-x-1.5">
+                        <i class="fas fa-copy"></i>
+                        <span id="copy-btn-text">Copy</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Copy Toast Feedback -->
+            <div id="toast-message" class="opacity-0 transition-opacity duration-300 mt-4 text-xs font-semibold text-rutgers">
+                Scarletmail address copied to clipboard!
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-gray-50 dark:bg-gray-950 text-gray-500 dark:text-gray-400 text-xs">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                &copy; <span id="year"></span> Harmen &bull; Rutgers University
+            </div>
+            <div class="flex items-center space-x-4">
+                <button onclick="openModal()" class="hover:text-rutgers transition">GitHub Pages Guide</button>
+                <span>&bull;</span>
+                <a href="mailto:hs1189@scarletmail.rutgers.edu" class="hover:text-rutgers transition">hs1189@scarletmail.rutgers.edu</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="hosting-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-rutgers/10 text-rutgers flex items-center justify-center text-xl">
+                    <i class="fa-brands fa-github"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">GitHub Pages Hosting Guide</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Host your Rutgers portfolio live for free in 4 easy steps</p>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-sm text-gray-700 dark:text-gray-300">
+                <div class="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                    <span class="bg-rutgers text-white font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">1</span>
+                    <div>
+                        <strong class="text-gray-900 dark:text-white">Create Repository:</strong> Log into <a href="https://github.com" target="_blank" class="text-rutgers underline">GitHub.com</a>, create a new public repository named <code class="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded text-xs">harmen-portfolio</code>.
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                    <span class="bg-rutgers text-white font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">2</span>
+                    <div>
+                        <strong class="text-gray-900 dark:text-white">Upload Code:</strong> Save this file as strictly <code class="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded text-xs">index.html</code> and upload/commit it to your repository.
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                    <span class="bg-rutgers text-white font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">3</span>
+                    <div>
+                        <strong class="text-gray-900 dark:text-white">Enable Pages:</strong> Navigate to <strong>Settings</strong> &rarr; <strong>Pages</strong> in your GitHub repository menu.
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                    <span class="bg-rutgers text-white font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs flex-shrink-0">4</span>
+                    <div>
+                        <strong class="text-gray-900 dark:text-white">Publish Branch:</strong> Under "Branch", select <code class="bg-gray-200 dark:bg-gray-800 px-1 py-0.5 rounded text-xs">main</code> and click <strong>Save</strong>.
+                    </div>
+                </div>
+
+                <div class="p-3 rounded-lg bg-rutgers/10 border border-rutgers/20 text-rutgers text-xs">
+                    <i class="fas fa-check-circle mr-1"></i>
+                    Your live link will be: <strong class="underline">https://[username].github.io/harmen-portfolio/</strong>
+                </div>
+            </div>
+
+            <div class="mt-6 text-right">
+                <button onclick="closeModal()" class="px-5 py-2 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-xl font-medium transition text-xs">
+                    Close Guide
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Automatic Year Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Dark / Light Theme Toggle Logic
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleDarkMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+        const themeToggleLightMobile = document.getElementById('theme-toggle-light-icon-mobile');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+            themeToggleLightMobile.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+            themeToggleDarkMobile.classList.remove('hidden');
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            themeToggleLightIcon.classList.toggle('hidden', !isDark);
+            themeToggleDarkIcon.classList.toggle('hidden', isDark);
+            themeToggleLightMobile.classList.toggle('hidden', !isDark);
+            themeToggleDarkMobile.classList.toggle('hidden', isDark);
+
+            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+        }
+
+        document.getElementById('theme-toggle').addEventListener('click', toggleDarkMode);
+        document.getElementById('theme-toggle-mobile').addEventListener('click', toggleDarkMode);
+
+        // Copy Email to Clipboard Logic
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const toast = document.getElementById('toast-message');
+            const copyBtnText = document.getElementById('copy-btn-text');
+            copyBtnText.textContent = 'Copied!';
+            toast.classList.remove('opacity-0');
+
+            setTimeout(() => {
+                copyBtnText.textContent = 'Copy';
+                toast.classList.add('opacity-0');
+            }, 2500);
+        }
+
+        // Modal Controls
+        function openModal() {
+            document.getElementById('hosting-modal').classList.remove('hidden');
+        }
+        function closeModal() {
+            document.getElementById('hosting-modal').classList.add('hidden');
+        }
+
+        // Dynamic Project Addition Logic
+        function toggleProjectForm() {
+            const container = document.getElementById('project-form-container');
+            container.classList.toggle('hidden');
+        }
+
+        function handleAddProject(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('proj-title').value.trim();
+            const category = document.getElementById('proj-category').value.trim() || 'Project';
+            const desc = document.getElementById('proj-desc').value.trim();
+            const skillsRaw = document.getElementById('proj-skills').value.trim();
+            const link = document.getElementById('proj-link').value.trim();
+
+            if (!title || !desc) return;
+
+            // Remove empty placeholder state
+            const emptyState = document.getElementById('empty-projects-state');
+            if (emptyState) {
+                emptyState.remove();
+            }
+
+            // Create Skills Badges HTML
+            const skills = skillsRaw ? skillsRaw.split(',').map(s => s.trim()) : [];
+            const skillsHtml = skills.map(skill => 
+                `<span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium">${skill}</span>`
+            ).join('');
+
+            // Build Card Element
+            const card = document.createElement('div');
+            card.className = "p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition flex flex-col justify-between";
+            card.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between text-xs font-semibold text-rutgers mb-2">
+                        <span>${category}</span>
+                        <i class="fas fa-folder text-sm"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">${title}</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">${desc}</p>
+                </div>
+                <div>
+                    ${skills.length > 0 ? `<div class="flex flex-wrap gap-1.5 mb-4">${skillsHtml}</div>` : ''}
+                    ${link ? `<a href="${link}" target="_blank" class="inline-flex items-center text-xs font-semibold text-rutgers hover:underline gap-1"><span>View Project</span><i class="fas fa-external-link-alt text-[10px]"></i></a>` : ''}
+                </div>
+            `;
+
+            // Append Card
+            document.getElementById('project-grid').appendChild(card);
+
+            // Reset Form and Hide
+            document.getElementById('project-form').reset();
+            toggleProjectForm();
+        }
+    </script>
+</body>
+</html>
